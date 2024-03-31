@@ -3,16 +3,23 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\CheckIfAdmin;
+use App\Models\Article;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
+    $recommended_article = DB::table('articles')->where('recommended', "=", true)->first('id') != null ? DB::table('articles')->where('recommended', "=", true)->first() : Article::orderBy('created_at','desc')->first();
+
     return Inertia::render('Homepage', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
+        'recommended_article' => Article::find($recommended_article->id),
+        // get the first 10 result
+        'latest_articles' => Article::orderBy('created_at','desc')->limit(10)->get()
     ]);
 });
 
@@ -26,6 +33,10 @@ Route::get("/article", [ArticleController::class, "show"])->name("article.show")
 Route::middleware([CheckIfAdmin::class])->group(function (){
     Route::get('/article/create', [ArticleController::class, 'create'])->name('article.create');
     Route::post('/article/create', [ArticleController::class, 'store'])->name('article.store');
+    Route::get('/article/edit', [ArticleController::class, 'edit'])->name('article.edit');
+    Route::post('/article/edit', [ArticleController::class,'update'])->name('article.update');
+    Route::post('/article/image/delete', [ArticleController::class, 'destroyImage'])->name('article.deleteImage');
+    Route::delete('/article/delete/{id}', [ArticleController::class,'destroy'])->name('article.destroy');
 });
 
 

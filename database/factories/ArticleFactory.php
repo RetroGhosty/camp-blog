@@ -21,6 +21,7 @@ class ArticleFactory extends Factory
             'title' => Str::random(10),
             'body' => fake()->paragraph(),
             
+            
         ];
     }
 }

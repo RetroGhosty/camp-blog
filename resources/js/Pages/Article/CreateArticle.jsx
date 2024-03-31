@@ -20,6 +20,7 @@ import { Progress } from "@/shadcn/ui/progress"
 const CreateArticle = ({auth}) => {
 
     const {data, setData, post, processing, errors} = useForm({
+        recommended: 0,
         title: "",
         body: "",
         thumbnail: null,
@@ -32,7 +33,6 @@ const CreateArticle = ({auth}) => {
         post(route('article.store'))
     }
 
-    console.log(errors)
 
 
   return (
@@ -62,18 +62,29 @@ const CreateArticle = ({auth}) => {
 
             <div className='flex flex-col items-start w-full'>
                 <div className='flex flex-row items-center space-x-2'>
+                    <label htmlFor="recommended" className='font-bold tracking-wide text-lg'>Show in recommendation?</label>
+                    {errors.recommended ? <span className='text-red-500'>{errors.recommended}</span> : null}
+                </div>
+                <select name="recommended" className='w-[20%] rounded-xl shadow-md' id="recommended" onChange={(e) => setData('recommended', e.target.value)} defaultValue={false}>
+                    <option value={0}>No</option>
+                    <option value={1}>Yes</option>
+                </select>
+            </div>
+
+            <div className='flex flex-col items-start w-full'>
+                <div className='flex flex-row items-center space-x-2'>
                     <label htmlFor="title" className='font-bold tracking-wide text-lg'>Title</label>
                     {errors.title ? <span className='text-red-500'>{errors.title}</span> : null}
                 </div>
-                <input id='title' value={data.title} onChange={(e) => setData('title', e.target.value)} name='title' className='rounded-xl w-full md:w-[40%]'/>
-            
+                <input id='title' value={data.title} onChange={(e) => setData('title', e.target.value)} name='title' className='rounded-xl w-full md:w-[40%] shadow-md'/>
             </div>
+
             <div className='flex flex-col items-start w-full'>
                 <div className='flex flex-row items-center space-x-2'>
                     <label htmlFor="body" className='font-bold tracking-wide text-lg'>Content</label>
                     {errors.body ? <span className='text-red-500'>{errors.body}</span> : null}
                 </div>
-                <textarea id='body' value={data.body} onChange={(e) => setData('body', e.target.value)} name='body' className='rounded-xl w-full' rows={15}/>
+                <textarea id='body' value={data.body} onChange={(e) => setData('body', e.target.value)} name='body' className='rounded-xl w-full shadow-md' rows={15}/>
             </div>
 
             <ThumbnailDragFile setData={setData} errors={errors}/>

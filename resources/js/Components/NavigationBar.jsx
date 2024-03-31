@@ -8,8 +8,8 @@ const NavigationBar = ({marginX, marginY, auth}) => {
           <span className='font-black text-xl uppercase'>Blog Camp</span>
       </div>
       {/* Only show container below if the user is both logged in and an admin */}
-      {auth.user !== null ? (
-        <span className='w-full flex items-center justify-end tracking-wider'>Welcome, John Davila 🔰</span>
+      {auth.user !== null && auth.user.admin !== 0 ? (
+        <span className='w-full flex items-center justify-end tracking-wider'>Welcome, {auth.user.email} 🔰</span>
               
       ) : ""}
     </div>

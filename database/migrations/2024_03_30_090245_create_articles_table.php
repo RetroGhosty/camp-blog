@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->longText('body');
+            $table->boolean('recommended')->default(false);
             $table->timestamps();
         });
     }

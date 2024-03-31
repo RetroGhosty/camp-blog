@@ -15,12 +15,19 @@ class Article extends Model implements HasMedia
 
     protected $fillable = [
         'title',
-        'body'
+        'body',
+        'recommended'
     ];
 
     protected $appends = [
-        'thumbnail' => 'thumbnail'
+        'thumbnail' => 'thumbnail',
+        'photos' => 'photos'
     ];
+
+    protected $casts = [
+        'recommended' => 'boolean',
+    ];
+
 
     protected $hidden = [
         'media'
@@ -28,9 +35,26 @@ class Article extends Model implements HasMedia
 
     public function getThumbnailAttribute(){
         $mediaItems = $this->getMedia('thumbnail');
-        return $mediaItems[0]->getUrl();
+        if (sizeof($mediaItems) == 0){
+            return null;
+        }
+        return [
+            'id' => $mediaItems[0]->id ,
+            'link' => $mediaItems[0]->getUrl()
+        ];
     }
 
+    public function getPhotosAttribute(){
+        $mediaLinks = [];
+        $mediaItems = $this->getMedia('sub_photos');
+        for ($i=0; $i < sizeof($mediaItems); $i++) { 
+            array_push($mediaLinks,[
+                'id' => $mediaItems[$i]->id,
+                'link' => $mediaItems[$i]->getUrl()
+            ]);
+        }
+        return $mediaLinks;
+    }
 
     public function registerMediaConversions(?Media $media = null): void
     {

@@ -35,14 +35,16 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title'=> 'required|min:10',
-            'body'=> 'required|min:20',
+            'title'=> 'required|min:5',
+            'body'=> 'required|min:10',
+            'recommended' => 'required',
             'thumbnail'=> 'required',
             'photos'=> 'required',
         ]);
         
         $article = Article::create([
             'title'=> $validated['title'],
+            'recommended' => $validated['recommended'],
             'body'=> $validated['body'],
         ]);
 
@@ -77,10 +79,15 @@ class ArticleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($articleId, Article $article)
+    public function edit(Request $request, Article $article)
     {
+        $article = Article::find($request->get('id'));
+        if ($article == null){
+            return abort(404);
+        }
+
         $payload = [
-            'article' => Article::find($articleId)
+            'article' => $article,
         ];
 
         return Inertia::render('Article/EditArticle', $payload);
@@ -89,16 +96,53 @@ class ArticleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Article $article)
+    public function update(Request $request)
     {
         //
+        $validated = $request->validate([
+            'id' => 'required',
+            'title'=> 'required|min:5',
+            'body'=> 'required|min:10',
+            'recommended' => 'required',
+            'thumbnail'=> 'nullable',
+            'photos'=> 'nullable',
+        ]);
+
+        $article = Article::find($validated['id']);
+        $article->update([
+            'title'=> $validated['title'],
+            'body'=> $validated['body'],
+        ]);
+
+        if ($validated['thumbnail'] !== null){
+            $article->addMedia($validated['thumbnail'])->toMediaCollection('thumbnail');
+        }
+
+        if ($validated['photos'] !== null){
+            for ($i=0; $i < sizeof($validated['photos']); $i++) { 
+                $article->addMedia($validated['photos'][$i])->toMediaCollection('sub_photos');
+            }
+        }
+
+        $article->save();
+        return to_route('article.show', ['id'=>$article->id]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Article $article)
+    public function destroy(Request $request, $id)
     {
-        //
+        $article = Article::find($id);
+        $article->delete();
+        return to_route('article.index');
+    }
+
+    public function destroyImage(Request $request ){
+
+        $article = Article::find($request->articleId);
+        $article->deleteMedia($request->imageId);
+        
+        return back()->with('success','Deleted successfully');
     }
 }
