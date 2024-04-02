@@ -48,7 +48,7 @@ const ViewAllArticles = ({articles, auth}) => {
         <section className='flex flex-col my-10 space-y-12 md:space-y-12 px-4 lg:px-10 xl:px-28 min-h-screen'>
             {articles.map((article) => (
               <div className="flex flex-row md:space-x-6 h-full" key={article.id}>
-                  <img src={`${article.thumbnail?.link}`} className="object-cover w-[450px] h-[225px] hidden md:block rounded-xl shadow-xl"/>
+                  <img src={`${article.thumbnail?.link}`} className="object-cover w-[200px] h-[200px] hidden md:block rounded-xl shadow-xl"/>
                   <div className='flex flex-col justify-between w-full md:py-3'>
                     <div>
                       
@@ -56,11 +56,6 @@ const ViewAllArticles = ({articles, auth}) => {
                         <span className='font-semibold break-all line-clamp-1 w-[60%]'>
                           {article.title}
                         </span>
-                        <div className='flex flex-row space-x-1 items-start'>
-                          <button onClick={() => router.get(route('article.show'), {id: article.id})} className='bg-[#E9C46A] rounded-xl px-3 py-1 hover:scale-105 transition duration-200' type="button">View article</button>
-                          {/* Add edit and delete button below this */}
-                          
-                        </div>
                       </div>
                       <p className='mt-6 break-all line-clamp-2 overflow-hidden'>
                         {article.body}
@@ -68,7 +63,13 @@ const ViewAllArticles = ({articles, auth}) => {
           
                       
                     </div>
-                    <span className=' text-muted text-xs'>{format(article.created_at, "MMMM dd, yyyy")}</span>
+                    <div className='flex flex-row items-center space-x-2'>
+                      <div className='flex flex-row space-x-1 items-start'>
+                        <button onClick={() => router.get(route('article.show'), {id: article.id})} className='bg-[#E9C46A] rounded-xl px-3 py-1 hover:scale-105 transition duration-200' type="button">View article</button>
+                        {/* Add edit and delete button below this */}
+                      </div>
+                      <span className=' text-muted text-xs'>{format(article.created_at, "MMMM dd, yyyy")}</span>
+                    </div>
                   </div>
               </div>
             ))}

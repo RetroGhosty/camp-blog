@@ -60,7 +60,7 @@ const Homepage = ({auth, recommended_article, latest_articles}) => {
                 <div className='grid grid-cols-1 mt-4 gap-10 '>
                     {latest_articles.map((article) => (
                         <div className='flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-4 w-full'>
-                            <img src={article?.thumbnail?.link} className='object-cover w-[450px] h-[225px] hidden md:block rounded-xl shadow-xl'/>
+                            <img src={article?.thumbnail?.link} className='object-cover w-[200px] h-[200px] hidden md:block rounded-xl shadow-xl'/>
                             <div className='flex flex-col  justify-between items-start'>
                                 <div>
                                     <span className='text-black font-semibold text-2xl w-full'>{article?.title}</span>
