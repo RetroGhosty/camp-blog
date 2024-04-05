@@ -27,15 +27,15 @@ const Homepage = ({auth, recommended_article, latest_articles}) => {
             </div> */}
         </div>
         {/* HERO SECTION */}
-        <section className='relative w-full min-h-[150px] md:min-h-[450px] mb-24 md:mb-12 lg:mb-24 bg-[#E5F8F8]'>
+        <section className='relative w-full min-h-[350px] md:min-h-[450px] mb-24 md:mb-12 lg:mb-24 bg-[#e5f8f8]'>
             <div className='flex flex-row h-full items-center gap-20 px-4 lg:px-10 xl:px-28 py-5 my-5'>
                 <div className='w-full flex flex-col items-center md:items-start'>
                     <h1 className='text-black text-4xl md:text-5xl font-bold mb-2'>Camp blogsite</h1>
-                    <p className='text-black text-2xl mb-4 text-center md:text-left'>A blog site from a <span className='text-[#e6ac57] font-bold'>seasoned camper </span> 
-                    where you can start your journey from hidden gems to iconic camping landmarks</p>
+                    <p className='text-black text-2xl mb-4 text-center md:text-left'>A blog site from a <span className='text-[#0065FE] font-bold'>seasoned camper </span> 
+                    where you can start your <span className='text-[#F68F2A] font-bold'>comfy </span>journey from hidden gems to iconic camping landmarks</p>
                     <button onClick={() => router.get(route('article.index'))} className='bg-[#0065FE] hover:bg-[#0026FE] transition duration-300 text-white px-6 py-2'>View blogs</button>
                     
-                    <IoIosArrowDropdownCircle className='mt-10 text-3xl absolute -bottom-6 hover:bottom-0 animate-bounce'/>
+                    <IoIosArrowDropdownCircle className='text-[#FF9E40] text-3xl md:text-4xl absolute -bottom-0 md:bottom-0 animate-bounce'/>
                 </div>
                 
                 <div className='w-full h-full md:flex items-center justify-center hidden'>
