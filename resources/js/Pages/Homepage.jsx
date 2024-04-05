@@ -3,15 +3,9 @@ import NavigationBar from '@/Components/NavigationBar'
 import ConstrainedLayout from '@/Layouts/ConstrainedLayout'
 import React from 'react'
 import { Head, router } from '@inertiajs/react';
+import { IoIosArrowDropdownCircle } from "react-icons/io";
 
-import {
-    Breadcrumb,
-    BreadcrumbItem,
-    BreadcrumbLink,
-    BreadcrumbList,
-    BreadcrumbPage,
-    BreadcrumbSeparator,
-  } from "@/shadcn/ui/breadcrumb"
+
 
 const Homepage = ({auth, recommended_article, latest_articles}) => {
 
@@ -32,7 +26,28 @@ const Homepage = ({auth, recommended_article, latest_articles}) => {
                 </Breadcrumb>
             </div> */}
         </div>
+        {/* HERO SECTION */}
+        <section className='relative w-full min-h-[150px] md:min-h-[450px] mb-24 md:mb-12 lg:mb-24 bg-[#E5F8F8]'>
+            <div className='flex flex-row h-full items-center gap-20 px-4 lg:px-10 xl:px-28 py-5 my-5'>
+                <div className='w-full flex flex-col items-center md:items-start'>
+                    <h1 className='text-black text-4xl md:text-5xl font-bold mb-2'>Camp blogsite</h1>
+                    <p className='text-black text-2xl mb-4 text-center md:text-left'>A blog site from a <span className='text-[#e6ac57] font-bold'>seasoned camper </span> 
+                    where you can start your journey from hidden gems to iconic camping landmarks</p>
+                    <button onClick={() => router.get(route('article.index'))} className='bg-[#0065FE] hover:bg-[#0026FE] transition duration-300 text-white px-6 py-2'>View blogs</button>
+                    
+                    <IoIosArrowDropdownCircle className='mt-10 text-3xl absolute -bottom-6 hover:bottom-0 animate-bounce'/>
+                </div>
+                
+                <div className='w-full h-full md:flex items-center justify-center hidden'>
+                    <img src="/hero-image.jpg" className='w-[80%] h-[400px] object-cover rounded-3xl '/>
+                </div>
+       
+            </div>
+            {/* Section end wave */}
+            <img src="/social-media-wave.svg"  className='absolute -bottom-28 md:-bottom-[170px] lg:-bottom-[250px] xl:-bottom-[300px] -z-10'/>
+        </section>
 
+        {/* RECOMMENDED ARTICLE SECTION*/}
         <section className='flex flex-col space-y-16 my-10'>
             <div className={`px-4 lg:px-10 xl:px-28`}>
                 <span className='font-black text-3xl'>Recommended</span>
@@ -47,7 +62,7 @@ const Homepage = ({auth, recommended_article, latest_articles}) => {
                             </p>
 
                         </div>
-                        <button onClick={() => router.get(route('article.show'), {id: recommended_article?.id})} className='bg-[#e9c46a] rounded-xl px-6 py-3 font-semibold hover:scale-105 transition duration-100 mt-3 md:mt-0' type='button'>View article</button>
+                        <button onClick={() => router.get(route('article.show'), {id: recommended_article?.id})} className='bg-[#FF9E40] hover:bg-[#F68F2A] rounded-none hover:rounded-xl px-6 py-3 font-semibold hover:scale-105 transition-all duration-200 mt-3 md:mt-0' type='button'>View article</button>
                     </div>
                 </div>
             </div>
@@ -69,23 +84,24 @@ const Homepage = ({auth, recommended_article, latest_articles}) => {
                                     </p>
                                 </div>
                             
-                                <button onClick={() => router.get(route('article.show'), {id: article.id})} type='button' className='bg-[#e9c46a] rounded-xl px-6 py-2 font-semibold hover:scale-105 transition duration-100 mt-3 md:mt-0'>View article</button>
+                                <button onClick={() => router.get(route('article.show'), {id: article.id})} type='button' className='bg-[#FF9E40] hover:bg-[#F68F2A] rounded-none hover:rounded-xl px-6 py-2 font-semibold hover:scale-105 transition-all duration-200 mt-3 md:mt-0'>View article</button>
 
 
                             </div>
                         </div>
                     ))}
-                    {/* First row */}
 
                 </div>
                 <div className='w-full flex flex-col items-end'>
-                    <button className='bg-[#3B99BB] text-white rounded-xl p-2 md:px-5 md:py-3 font-semibold hover:scale-105 transition duration-100 mt-3 md:mt-0' type='button' onClick={(e) => {
+                    <button className='bg-[#0065FE] hover:bg-[#0026FE] text-white rounded-none hover:rounded-xl p-2 md:px-5 md:py-3 font-semibold hover:scale-105 transition-all duration-200 mt-3 md:mt-0' type='button' onClick={(e) => {
                             router.get(route('article.index'))
                         }}>View all articles</button>
                 
                 </div>
             </div>
         </section>
+
+
 
         <Footer marginX="px-4 lg:px-10 xl:px-28"/>
     </ConstrainedLayout>

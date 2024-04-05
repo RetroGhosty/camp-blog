@@ -21,7 +21,7 @@ Route::get('/', function () {
         // get the first 10 result
         'latest_articles' => Article::orderBy('created_at','desc')->limit(10)->get()
     ]);
-});
+})->name('home');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
