@@ -8,7 +8,7 @@ const NavigationBar = ({marginX, marginY, auth, highlightHeader, active}) => {
           <img src="/logo.png" className="img-fluid h-[100%] w-auto absolute -top-1" alt="logo"/>
       </div>
       <div className='h-full w-full flex flex-row space-x-4 items-center justify-end'>
-        <ul className='h-full w-full flex flex-row space-x-10 items-center justify-end text-xl tracking-wider'>
+        <ul className='h-full w-full flex flex-row space-x-10 items-center justify-end text-md tracking-wider'>
           <li onClick={() => router.get(route('home'))} 
           className={`cursor-pointer hover:text-black transition-all duration-200 ${route().current('home') ? "text-black font-bold" : null}`}>Home</li>
 

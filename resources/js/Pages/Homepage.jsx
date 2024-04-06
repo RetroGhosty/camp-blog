@@ -27,7 +27,7 @@ const Homepage = ({auth, recommended_article, latest_articles}) => {
             </div> */}
         </div>
         {/* HERO SECTION */}
-        <section className='relative w-full min-h-[350px] md:min-h-[450px] mb-24 md:mb-12 lg:mb-24 bg-[#e5f8f8]'>
+        <section className='relative w-full min-h-[350px] md:min-h-[450px] mb-24 md:mb-12 lg:mb-36 xl:mb-24 bg-[#e5f8f8]'>
             <div className='flex flex-row h-full items-center gap-20 px-4 lg:px-10 xl:px-28 py-5 my-5'>
                 <div className='w-full flex flex-col items-center md:items-start'>
                     <h1 className='text-black text-4xl md:text-5xl font-bold mb-2'>Camp blogsite</h1>
@@ -48,7 +48,7 @@ const Homepage = ({auth, recommended_article, latest_articles}) => {
         </section>
 
         {/* RECOMMENDED ARTICLE SECTION*/}
-        <section className='flex flex-col space-y-16 my-10'>
+        <section className='flex flex-col space-y-16 mb-24'>
             <div className={`px-4 lg:px-10 xl:px-28`}>
                 <span className='font-black text-3xl'>Recommended</span>
                 <div className='grid grid-cols-1 md:grid-cols-2 mt-4 gap-y-10 md:gap-x-10 '>
@@ -62,7 +62,7 @@ const Homepage = ({auth, recommended_article, latest_articles}) => {
                             </p>
 
                         </div>
-                        <button onClick={() => router.get(route('article.show'), {id: recommended_article?.id})} className='bg-[#FF9E40] hover:bg-[#F68F2A] rounded-none hover:rounded-xl px-6 py-3 font-semibold hover:scale-105 transition-all duration-200 mt-3 md:mt-0' type='button'>View article</button>
+                        <button onClick={() => router.get(route('article.show'), {id: recommended_article?.id})} className='bg-[#FF9E40] text-slate-100 hover:bg-[#F68F2A] rounded-none hover:rounded-xl px-6 py-3 font-semibold hover:scale-105 transition-all duration-200 mt-3 md:mt-0' type='button'>View article</button>
                     </div>
                 </div>
             </div>
@@ -84,7 +84,7 @@ const Homepage = ({auth, recommended_article, latest_articles}) => {
                                     </p>
                                 </div>
                             
-                                <button onClick={() => router.get(route('article.show'), {id: article.id})} type='button' className='bg-[#FF9E40] hover:bg-[#F68F2A] rounded-none hover:rounded-xl px-6 py-2 font-semibold hover:scale-105 transition-all duration-200 mt-3 md:mt-0'>View article</button>
+                                <button onClick={() => router.get(route('article.show'), {id: article.id})} type='button' className='bg-[#FF9E40] text-slate-100 hover:bg-[#F68F2A] rounded-none hover:rounded-xl px-6 py-2 font-semibold hover:scale-105 transition-all duration-200 mt-3 md:mt-0'>View article</button>
 
 
                             </div>
@@ -99,6 +99,36 @@ const Homepage = ({auth, recommended_article, latest_articles}) => {
                 
                 </div>
             </div>
+        </section>
+        <section className='relative min-h-[200px] bg-[#E5F8F8]'>
+            {/* Top section wave */}
+            <img src="/about-wave.svg" className='absolute -top-[50px] md:-top-[80px] xl:-top-[100px] w-full h-auto -z-10' />
+            <div className='w-full flex flex-col space-y-12 px-4 lg:px-10 xl:px-28 py-5 my-5'>
+                <div className='w-full flex flex-row items-center gap-10'>
+                    <div className='w-full h-full flex items-center justify-start'>
+                        <img src="/map.jpg" className='w-[100%] h-[400px] aspect-square object-cover rounded-xl'/>
+                    </div>            
+                    <div className='w-full space-y-2'>
+                        <h2 className='text-xl font-bold uppercase'>About this site</h2>
+                        <p className='text-xl leading-2'>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus similique aut quia animi earum facilis consectetur, obcaecati in dolorum iure laborum at laudantium asperiores culpa mollitia commodi architecto quod voluptatem placeat qui enim accusantium inventore tempore. Facilis velit quibusdam, natus commodi dolorum reprehenderit ullam! Voluptates quidem voluptatum velit alias at.
+                        </p>
+                    </div>
+                </div>
+                <div className='w-full flex flex-row-reverse  items-center gap-10'>
+                    <div className='w-full h-full flex items-center justify-end'>
+                        <img src="/author.jpg" className='w-[100%] h-[400px] aspect-square object-cover object-top rounded-xl'/>
+                    </div>
+                    <div className='w-full space-y-4'>
+                        <h2 className='text-2xl font-bold uppercase'>Blog Author</h2>
+                        <p className='text-xl leading-2'>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus similique aut quia animi earum facilis consectetur, obcaecati in dolorum iure laborum at laudantium asperiores culpa mollitia commodi architecto quod voluptatem placeat qui enim accusantium inventore tempore. Facilis velit quibusdam, natus commodi dolorum reprehenderit ullam! Voluptates quidem voluptatum velit alias at.
+                        </p>
+                    </div>
+                </div>
+    
+            </div>
+
         </section>
 
 
