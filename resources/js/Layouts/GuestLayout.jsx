@@ -11,7 +11,7 @@ export default function Guest({ children, auth }) {
             <div className="w-full sm:max-w-md px-6 py-10  bg-white shadow-md overflow-hidden sm:rounded-lg">
                 {children}
             </div>
-            <Footer marginX="px-4 lg:px-10 xl:px-28"/>
+            <Footer marginX="px-4 lg:px-10"/>
         </div>
     );
 }

@@ -19,7 +19,7 @@ const ViewArticle = ({article, auth}) => {
         <Head title="Homepage" />
 
         <div className='sticky top-0 z-10'>
-            <NavigationBar marginX="px-4 lg:px-10 xl:px-28" auth={auth}/>
+            <NavigationBar bgColor="bg-[#FF7D00]" marginX="px-4 lg:px-10 xl:px-28" auth={auth}/>
             <div className="bg-[#216680] py-2 px-4 lg:px-10 xl:px-28 flex flex-row items-center justify-between">
                 <Breadcrumb>
                     <BreadcrumbList>
@@ -37,10 +37,13 @@ const ViewArticle = ({article, auth}) => {
                     </BreadcrumbList>
                 </Breadcrumb>
                 {/* Only show this if the user is both logged in and admin */}
-                <div className='text-white'>
-                  <span onClick={() => router.get(route('article.edit'), {id: article.id})} className='hover:text-[#E9C46A] hover:bg-[#42391b] px-3 py-1 transition duration-100 select-none cursor-pointer'>Edit article</span>
-                  <span onClick={() => router.delete(route('article.destroy', article.id))} className='hover:text-[#E9C46A] text-red-300 hover:bg-[#42391b] px-3 py-1 transition duration-100 select-none cursor-pointer'>Delete article</span>
-                </div>
+                {auth.user !== null && auth.user.admin !== 0 ? (
+                  <div className='text-white'>
+                    <span onClick={() => router.get(route('article.edit'), {id: article.id})} className='hover:text-[#E9C46A] hover:bg-[#42391b] px-3 py-1 transition duration-100 select-none cursor-pointer'>Edit article</span>
+                    <span onClick={() => router.delete(route('article.destroy', article.id))} className='hover:text-[#E9C46A] text-red-300 hover:bg-[#42391b] px-3 py-1 transition duration-100 select-none cursor-pointer'>Delete article</span>
+                  </div>
+                ) : ""}
+
             </div>
         </div>
 
@@ -65,7 +68,7 @@ const ViewArticle = ({article, auth}) => {
         </section>
 
 
-        <Footer marginX="px-4 lg:px-10 xl:px-28"/>
+        <Footer marginX="px-4 lg:px-10"/>
     </ConstrainedLayout>
   )
 }

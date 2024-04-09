@@ -22,7 +22,7 @@ const ViewAllArticles = ({articles, auth}) => {
         <Head title="Homepage" />
 
         <div className='sticky top-0 z-10'>
-            <NavigationBar marginX="px-4 lg:px-10 xl:px-28" auth={auth}/>
+            <NavigationBar bgColor="bg-[#FF7D00]" marginX="px-4 lg:px-10 xl:px-28" auth={auth}/>
             <div className="bg-[#216680] py-2 px-4 lg:px-10 xl:px-28 flex flex-row items-center justify-between">
                 <Breadcrumb>
                     <BreadcrumbList>
@@ -76,7 +76,7 @@ const ViewAllArticles = ({articles, auth}) => {
 
         </section>
 
-        <Footer marginX="px-4 lg:px-10 xl:px-28"/>
+        <Footer marginX="px-4 lg:px-10"/>
     </ConstrainedLayout>
   )
 }

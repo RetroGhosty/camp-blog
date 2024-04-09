@@ -42,7 +42,7 @@ const StandardLayout = ({children}) => {
         <section className='flex flex-col my-10 space-y-3 md:space-y-8 px-4 lg:px-10 xl:px-28'>
           {children}
         </section>
-        <Footer marginX="px-4 lg:px-10 xl:px-28"/>
+        <Footer marginX="px-4 lg:px-10"/>
     </ConstrainedLayout>
   )
 }

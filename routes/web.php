@@ -10,14 +10,19 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    $recommended_article = DB::table('articles')->where('recommended', "=", true)->first('id') != null ? DB::table('articles')->where('recommended', "=", true)->first() : Article::orderBy('created_at','desc')->first();
+    
+    $recommended_article = [];
+    for ($i=0; $i < count(DB::table('articles')->where('recommended', "=", true)->limit(3)->get('id')); $i++) { 
+        array_push($recommended_article, Article::find(DB::table('articles')->where('recommended', "=", true)->limit(3)->get()[$i]->id));
+    }
+
 
     return Inertia::render('Homepage', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
-        'recommended_article' => Article::find($recommended_article->id),
+        'recommended_articles' => $recommended_article,
         // get the first 10 result
         'latest_articles' => Article::orderBy('created_at','desc')->limit(10)->get()
     ]);
