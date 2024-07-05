@@ -4,7 +4,7 @@
 A campsite blogpost made by Laravel and React with Inertia.js 🏕️🔥   
 </p>
 ✅ Admin dashboard to post an article<br/>
-✅ Integrated with emailer to receive a recommendation campsites for anonymous user<br/>
+✅ Integrated with emailer to receive a recommendation campsites from anonymous user<br/>
 ✅ This project was developed within 24 hours
 
 
